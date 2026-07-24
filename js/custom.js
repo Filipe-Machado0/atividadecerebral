@@ -136,10 +136,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
         
-        // Failsafe: if they scroll very fast upwards on mobile
+        // Failsafe & Mobile Exit Intent: if they scroll down then quickly back to top
+        let hasScrolledDown = false;
         document.addEventListener("scroll", () => {
-            if (window.scrollY === 0 && !modalShown) {
-                // Just as a fallback for some devices, but let's not be too aggressive
+            if (window.scrollY > 300) {
+                hasScrolledDown = true;
+            }
+            if (hasScrolledDown && window.scrollY < 50 && !modalShown) {
+                modalShown = true;
+                exitModal.style.opacity = "1";
+                exitModal.style.pointerEvents = "auto";
             }
         });
     }
