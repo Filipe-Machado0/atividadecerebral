@@ -20,9 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. Notification Toast
     const toast = document.querySelector(".notification-toast");
-    const toastNumber = toast.querySelector("strong");
     
     if (toast) {
+        const toastNumber = toast.querySelector("strong");
         toast.style.transition = "all 0.5s ease";
         toast.style.transform = "translateY(100px)";
         toast.style.opacity = "0";
@@ -127,11 +127,19 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        document.addEventListener("mouseout", (e) => {
-            if (e.clientY < 10 && !modalShown) {
+        // Show modal when mouse leaves the document (exit intent)
+        document.addEventListener("mouseleave", (e) => {
+            if (e.clientY <= 20 && !modalShown) {
                 modalShown = true;
                 exitModal.style.opacity = "1";
                 exitModal.style.pointerEvents = "auto";
+            }
+        });
+        
+        // Failsafe: if they scroll very fast upwards on mobile
+        document.addEventListener("scroll", () => {
+            if (window.scrollY === 0 && !modalShown) {
+                // Just as a fallback for some devices, but let's not be too aggressive
             }
         });
     }
