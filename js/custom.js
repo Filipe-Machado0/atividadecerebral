@@ -63,14 +63,45 @@ document.addEventListener("DOMContentLoaded", () => {
         exitModal.style.left = "0";
         exitModal.style.width = "100%";
         exitModal.style.height = "100%";
-        exitModal.style.backgroundColor = "rgba(0,0,0,0.5)";
+        exitModal.style.backgroundColor = "rgba(0,0,0,0.6)";
+        exitModal.style.backdropFilter = "blur(3px)";
         exitModal.style.zIndex = "10000";
         exitModal.style.display = "flex";
         exitModal.style.alignItems = "center";
         exitModal.style.justifyContent = "center";
 
+        const modalContent = exitModal.querySelector(".modal-content");
+        if (modalContent) {
+            modalContent.style.backgroundColor = "#fff";
+            modalContent.style.padding = "3rem 2rem";
+            modalContent.style.borderRadius = "24px";
+            modalContent.style.position = "relative";
+            modalContent.style.width = "90%";
+            modalContent.style.maxWidth = "450px";
+            modalContent.style.textAlign = "center";
+            modalContent.style.boxShadow = "0 0 40px 10px rgba(138, 43, 226, 0.4)";
+            modalContent.style.border = "3px solid rgba(138, 43, 226, 0.6)";
+        }
+
+        const modalIcon = exitModal.querySelector(".modal-icon");
+        if (modalIcon) {
+            modalIcon.style.fontSize = "4.5rem";
+            modalIcon.style.display = "block";
+            modalIcon.style.marginBottom = "1rem";
+            modalIcon.style.lineHeight = "1";
+        }
+
         const closeBtn = exitModal.querySelector(".modal-close");
         if (closeBtn) {
+            closeBtn.style.position = "absolute";
+            closeBtn.style.top = "15px";
+            closeBtn.style.right = "15px";
+            closeBtn.style.fontSize = "1.5rem";
+            closeBtn.style.color = "#999";
+            closeBtn.style.background = "none";
+            closeBtn.style.border = "none";
+            closeBtn.style.cursor = "pointer";
+            
             closeBtn.addEventListener("click", () => {
                 exitModal.style.opacity = "0";
                 exitModal.style.pointerEvents = "none";
@@ -79,6 +110,17 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const contentBtn = exitModal.querySelector(".btn-primary");
         if (contentBtn) {
+            contentBtn.style.backgroundColor = "#8b5cf6";
+            contentBtn.style.color = "white";
+            contentBtn.style.padding = "1rem 2rem";
+            contentBtn.style.borderRadius = "2rem";
+            contentBtn.style.display = "inline-block";
+            contentBtn.style.fontWeight = "bold";
+            contentBtn.style.marginTop = "1rem";
+            contentBtn.style.border = "none";
+            contentBtn.style.textDecoration = "none";
+            contentBtn.style.boxShadow = "0 4px 15px rgba(138, 43, 226, 0.3)";
+            
             contentBtn.addEventListener("click", () => {
                 exitModal.style.opacity = "0";
                 exitModal.style.pointerEvents = "none";
