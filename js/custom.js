@@ -184,15 +184,27 @@
         
         slides.forEach((s, i) => {
             s.style.display = i === 0 ? "block" : "none";
+            s.style.opacity = i === 0 ? "1" : "0";
+            if (i === 0) {
+                s.classList.add("active");
+            } else {
+                s.classList.remove("active");
+            }
             s.style.width = "100%";
             s.style.borderRadius = "1rem";
         });
 
         function showSlide(index) {
-            slides.forEach(s => s.style.display = "none");
+            slides.forEach(s => {
+                s.style.display = "none";
+                s.style.opacity = "0";
+                s.classList.remove("active");
+            });
             dots.forEach(d => d.classList.remove("active"));
             
             slides[index].style.display = "block";
+            slides[index].style.opacity = "1";
+            slides[index].classList.add("active");
             if(dots[index]) dots[index].classList.add("active");
             currentSlide = index;
         }
