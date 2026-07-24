@@ -127,9 +127,10 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Show modal when mouse leaves the document (exit intent)
-        document.addEventListener("mouseleave", (e) => {
-            if (e.clientY <= 20 && !modalShown) {
+        // Show modal when mouse leaves the document (exit intent) - More aggressive logic
+        document.addEventListener("mouseout", (e) => {
+            // Se saiu da tela (relatedTarget null) e pela parte de cima (Y < 50)
+            if (!e.relatedTarget && e.clientY < 50 && !modalShown) {
                 modalShown = true;
                 exitModal.style.opacity = "1";
                 exitModal.style.pointerEvents = "auto";
@@ -148,6 +149,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 exitModal.style.pointerEvents = "auto";
             }
         });
+
+        // Failsafe 2: Mostra de qualquer jeito depois de 60 segundos
+        setTimeout(() => {
+            if (!modalShown) {
+                modalShown = true;
+                exitModal.style.opacity = "1";
+                exitModal.style.pointerEvents = "auto";
+            }
+        }, 60000);
     }
 
     // 4. Timer Bar
