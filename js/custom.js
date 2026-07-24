@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         document.addEventListener("mouseout", (e) => {
-            if (e.clientY < 0 && !modalShown) {
+            if (e.clientY < 10 && !modalShown) {
                 modalShown = true;
                 exitModal.style.opacity = "1";
                 exitModal.style.pointerEvents = "auto";
