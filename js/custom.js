@@ -1,5 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. FAQ Accordion
+// 1. FAQ Accordion
     const faqButtons = document.querySelectorAll("#faq button");
     faqButtons.forEach(button => {
         button.addEventListener("click", () => {
@@ -224,4 +223,3 @@ document.addEventListener("DOMContentLoaded", () => {
             showSlide(next);
         }, 4000);
     }
-});
