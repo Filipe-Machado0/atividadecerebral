@@ -33,7 +33,7 @@
 #reading-progress { position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: linear-gradient(90deg, var(--primary), var(--cta)); z-index: 9999; transition: width 0.1s linear; border-radius: 0 2px 2px 0; }
 
 /* Sticky CTA Mobile */
-#sticky-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 9000; padding: 12px 16px; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); box-shadow: 0 -4px 20px rgba(0,0,0,0.12); border-top: 1px solid rgba(0,0,0,0.06); }
+#sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9000; padding: 12px 16px; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); box-shadow: 0 -4px 20px rgba(0,0,0,0.15); border-top: 2px solid rgba(244,63,94,0.3); }
 #sticky-cta a { display: block; text-align: center; background: var(--cta); color: white; font-weight: 800; font-size: 1rem; padding: 14px; border-radius: 1rem; text-decoration: none; letter-spacing: 0.02em; animation: btnPulse 2.5s ease-in-out infinite; }
 @media(min-width: 768px) { #sticky-cta { display: none !important; } }
 
@@ -66,15 +66,7 @@ window.addEventListener('scroll', () => {
   progressBar.style.width = (scrollTop / docHeight * 100) + '%';
 });
 
-// Sticky CTA Mobile (scroll-based, reliable on all devices)
-const stickyCta = document.getElementById('sticky-cta');
-function checkStickyCta() {
-  if (window.innerWidth >= 768) { stickyCta.style.display = 'none'; return; }
-  stickyCta.style.display = window.scrollY > window.innerHeight * 0.6 ? 'block' : 'none';
-}
-window.addEventListener('scroll', checkStickyCta, { passive: true });
-window.addEventListener('resize', checkStickyCta);
-checkStickyCta();
+// Sticky CTA Mobile - handled by CSS only
 
 // Toast Dinâmico
 const toastData = [
