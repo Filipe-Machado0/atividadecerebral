@@ -66,13 +66,15 @@ window.addEventListener('scroll', () => {
   progressBar.style.width = (scrollTop / docHeight * 100) + '%';
 });
 
-// Sticky CTA Mobile
+// Sticky CTA Mobile (scroll-based, reliable on all devices)
 const stickyCta = document.getElementById('sticky-cta');
-const heroSection = document.querySelector('header');
-const observer = new IntersectionObserver(([e]) => {
-  stickyCta.style.display = e.isIntersecting ? 'none' : 'block';
-}, { threshold: 0.1 });
-if (heroSection) observer.observe(heroSection);
+function checkStickyCta() {
+  if (window.innerWidth >= 768) { stickyCta.style.display = 'none'; return; }
+  stickyCta.style.display = window.scrollY > window.innerHeight * 0.6 ? 'block' : 'none';
+}
+window.addEventListener('scroll', checkStickyCta, { passive: true });
+window.addEventListener('resize', checkStickyCta);
+checkStickyCta();
 
 // Toast Dinâmico
 const toastData = [
